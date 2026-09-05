@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="La Crosta — an elevated Italian dining experience inspired by Naples.">
+<title>LA CROSTA — Napoli, Since 1987</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --green:#102d24;
+  --green-2:#173d30;
+  --red:#b9222a;
+  --cream:#f7efdf;
+  --gold:#caa34a;
+  --ink:#10110f;
+  --muted:#aaa69c;
+  --line:rgba(247,239,223,.13);
+  --glass:rgba(255,255,255,.055);
+  --serif:"Playfair Display",Georgia,serif;
+  --display:Cinzel,Georgia,serif;
+  --sans:"DM Sans",Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--ink);color:var(--cream);line-height:1.65;overflow-x:hidden}
+body.no-scroll{overflow:hidden}
+a{text-decoration:none;color:inherit}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+img{display:block;width:100%;object-fit:cover}
+::selection{background:var(--gold);color:var(--ink)}
+.container{width:min(1240px,90%);margin:auto}
+.section{padding:125px 0;position:relative}
+.eyebrow{display:flex;align-items:center;gap:12px;color:var(--gold);font-size:.68rem;letter-spacing:4px;text-transform:uppercase;font-weight:700;margin-bottom:17px}
+.eyebrow:before{content:"";width:36px;height:1px;background:var(--gold)}
+.title{font-family:var(--serif);font-size:clamp(2.8rem,5.2vw,5.5rem);line-height:.98;font-weight:500;letter-spacing:-2px}
+.title em{font-weight:500}
+.copy{color:var(--muted);max-width:650px;font-size:.98rem}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:1px solid transparent;padding:15px 25px;min-height:52px;text-transform:uppercase;letter-spacing:1.5px;font-size:.68rem;font-weight:700;transition:.35s;border-radius:2px}
+.btn-red{background:var(--red);color:#fff;box-shadow:0 12px 35px rgba(185,34,42,.25)}
+.btn-red:hover{transform:translateY(-3px);box-shadow:0 18px 45px rgba(185,34,42,.36)}
+.btn-line{border-color:rgba(247,239,223,.3);background:rgba(255,255,255,.02);color:var(--cream)}
+.btn-line:hover{background:var(--cream);color:var(--ink);transform:translateY(-3px)}
+.rule{height:1px;background:var(--line)}
+.noise{position:fixed;inset:0;pointer-events:none;opacity:.035;z-index:9999;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E")}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;width:100%;z-index:1000;padding:25px 0;transition:.4s}
+.nav.scrolled{padding:14px 0;background:rgba(16,45,36,.94);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:var(--display);font-size:1.25rem;letter-spacing:4px}
+.logo small{display:block;font-family:var(--sans);font-size:.47rem;letter-spacing:3px;text-align:center;color:var(--gold);margin-top:-2px}
+.nav-links{display:flex;align-items:center;gap:30px;list-style:none}
+.nav-links a{font-size:.67rem;letter-spacing:1.4px;text-transform:uppercase;color:#e8e1d5;position:relative}
+.nav-links a:after{content:"";position:absolute;left:0;bottom:-8px;width:0;height:1px;background:var(--gold);transition:.3s}
+.nav-links a:hover:after{width:100%}
+.nav-book{padding:11px 18px;border:1px solid rgba(202,163,74,.7);color:var(--gold)!important}
+.nav-book:after{display:none}
+.menu-toggle{display:none;background:none;border:0;color:var(--cream);font-size:1.7rem}
+
+/* HERO */
+.hero{min-height:100vh;display:grid;place-items:center;position:relative;overflow:hidden;background:#0c0f0d}
+.hero-bg{position:absolute;inset:0;background:
+linear-gradient(90deg,rgba(8,12,10,.95) 0%,rgba(8,12,10,.72) 43%,rgba(8,12,10,.25) 100%),
+linear-gradient(0deg,rgba(8,12,10,.7),transparent 45%),
+url("https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=2200&q=88") center/cover}
+.hero-content{position:relative;z-index:2;padding-top:70px}
+.hero-kicker{color:var(--gold);font-size:.68rem;letter-spacing:5px;text-transform:uppercase;margin-bottom:18px}
+.hero h1{font-family:var(--serif);font-weight:500;font-size:clamp(4rem,8.5vw,9.3rem);line-height:.83;letter-spacing:-5px;max-width:900px}
+.hero h1 span{display:block;font-style:italic;color:var(--cream)}
+.hero-sub{font-family:var(--serif);font-style:italic;font-size:1.25rem;color:#ddd4c5;margin:28px 0 12px}
+.hero-copy{max-width:560px;color:#b8b2a8;font-size:.94rem}
+.hero-actions{display:flex;gap:12px;margin-top:32px}
+.hero-meta{position:absolute;right:5%;bottom:45px;z-index:3;display:flex;align-items:center;gap:24px;color:#c7c0b3;font-size:.62rem;letter-spacing:2px;text-transform:uppercase}
+.hero-meta .dot{width:5px;height:5px;background:var(--gold);border-radius:50%}
+.scroll-mark{position:absolute;left:5%;bottom:40px;z-index:3;writing-mode:vertical-rl;transform:rotate(180deg);font-size:.58rem;letter-spacing:4px;color:#c9c1b4}
+
+/* INTRO */
+.intro{background:var(--cream);color:var(--ink)}
+.intro-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:90px;align-items:center}
+.intro .eyebrow{color:var(--red)}
+.intro .eyebrow:before{background:var(--red)}
+.intro .title{max-width:580px}
+.intro .copy{color:#625f57;margin-top:28px;max-width:590px}
+.signature{margin-top:38px;font-family:var(--serif);font-style:italic;font-size:1.3rem}
+.signature small{display:block;font-family:var(--sans);font-style:normal;text-transform:uppercase;letter-spacing:2px;font-size:.55rem;margin-top:4px;color:#777167}
+.intro-image{position:relative;height:580px}
+.intro-image img{height:100%}
+.intro-image:after{content:"";position:absolute;inset:18px;border:1px solid rgba(247,239,223,.5);pointer-events:none}
+.stamp{position:absolute;z-index:2;left:-40px;bottom:45px;width:115px;height:115px;border-radius:50%;display:grid;place-items:center;text-align:center;background:var(--red);color:white;font-family:var(--display);font-size:.55rem;letter-spacing:2px;line-height:1.5;transform:rotate(-12deg);box-shadow:0 15px 35px rgba(0,0,0,.18)}
+
+/* FEATURES */
+.features{background:var(--green)}
+.feature-grid{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.feature{padding:35px 25px 35px 0;border-right:1px solid var(--line)}
+.feature:not(:first-child){padding-left:25px}
+.feature:last-child{border-right:0}
+.feature-num{font-family:var(--serif);font-size:.8rem;color:var(--gold)}
+.feature h3{font-family:var(--serif);font-size:1.4rem;font-weight:500;margin:12px 0 8px}
+.feature p{color:#a9ada6;font-size:.78rem;max-width:220px}
+
+/* PIZZA */
+.pizza-section{background:#121412}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:55px}
+.section-head .copy{margin-bottom:5px}
+.pizza-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.pizza-card{background:#1a1c19;position:relative;overflow:hidden;border:1px solid rgba(247,239,223,.07);transition:.45s}
+.pizza-card:hover{transform:translateY(-8px);border-color:rgba(202,163,74,.4)}
+.pizza-img{height:310px;overflow:hidden}
+.pizza-img img{height:100%;transition:.7s}
+.pizza-card:hover .pizza-img img{transform:scale(1.07)}
+.pizza-body{padding:24px}
+.pizza-top{display:flex;justify-content:space-between;gap:20px}
+.pizza-name{font-family:var(--serif);font-size:1.55rem;font-weight:500}
+.price{color:var(--gold);font-size:.85rem;font-weight:700}
+.pizza-body p{color:#9e9d97;font-size:.77rem;margin:10px 0 18px;min-height:48px}
+.add{width:100%;background:transparent;border:1px solid rgba(247,239,223,.16);color:var(--cream);padding:12px;text-transform:uppercase;letter-spacing:1.4px;font-size:.61rem;font-weight:700;transition:.3s}
+.add:hover{background:var(--red);border-color:var(--red)}
+
+/* MENU */
+.menu-section{background:var(--cream);color:var(--ink)}
+.menu-section .eyebrow{color:var(--red)}
+.menu-section .eyebrow:before{background:var(--red)}
+.menu-tabs{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 40px}
+.tab{background:transparent;border:1px solid #d7cdbb;padding:11px 18px;font-size:.63rem;text-transform:uppercase;letter-spacing:1.5px;transition:.25s}
+.tab.active,.tab:hover{background:var(--ink);color:var(--cream);border-color:var(--ink)}
+.menu-list{display:grid;grid-template-columns:1fr 1fr;column-gap:70px}
+.menu-item{display:grid;grid-template-columns:1fr auto;gap:15px;padding:22px 0;border-bottom:1px solid #ddd2bf}
+.menu-item h3{font-family:var(--serif);font-size:1.2rem;font-weight:500}
+.menu-item p{font-size:.73rem;color:#777267;max-width:440px;margin-top:4px}
+.menu-price{font-family:var(--serif);font-size:1rem}
+
+/* PROCESS */
+.process{background:var(--green);overflow:hidden}
+.process-wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:90px;align-items:start}
+.process-title{position:sticky;top:130px}
+.process-title .title{max-width:480px}
+.process-list{border-top:1px solid var(--line)}
+.step{display:grid;grid-template-columns:70px 1fr;gap:25px;padding:35px 0;border-bottom:1px solid var(--line)}
+.step-no{font-family:var(--serif);font-size:1.4rem;color:var(--gold)}
+.step h3{font-family:var(--serif);font-size:2rem;font-weight:500}
+.step p{color:#a9ada6;max-width:540px;margin-top:8px}
+
+/* GALLERY */
+.gallery-section{background:#0d0e0d}
+.gallery-grid{display:grid;grid-template-columns:1.15fr .85fr .85fr;grid-auto-rows:240px;gap:10px}
+.gallery-item{overflow:hidden;position:relative;cursor:pointer}
+.gallery-item:nth-child(1){grid-row:span 2}
+.gallery-item:nth-child(4){grid-column:span 2}
+.gallery-item img{height:100%;transition:.65s}
+.gallery-item:after{content:"VIEW";position:absolute;inset:0;display:grid;place-items:center;background:rgba(16,45,36,.45);color:#fff;font-size:.62rem;letter-spacing:3px;opacity:0;transition:.3s}
+.gallery-item:hover img{transform:scale(1.06)}
+.gallery-item:hover:after{opacity:1}
+
+/* REVIEWS */
+.reviews{background:var(--cream);color:var(--ink)}
+.reviews .eyebrow{color:var(--red)}
+.reviews .eyebrow:before{background:var(--red)}
+.review-shell{overflow:hidden}
+.review-track{display:flex;transition:transform .55s ease}
+.review{min-width:100%;display:grid;grid-template-columns:1fr 2fr;gap:80px;padding:25px 0 45px}
+.review-quote{font-family:var(--serif);font-size:clamp(2rem,4vw,4rem);line-height:1.02;font-style:italic}
+.stars{color:var(--gold);letter-spacing:4px;font-size:.8rem;margin-bottom:22px}
+.review p{font-family:var(--serif);font-size:1.55rem;line-height:1.35;max-width:700px}
+.review cite{display:block;font-family:var(--sans);font-style:normal;text-transform:uppercase;letter-spacing:2px;font-size:.58rem;margin-top:22px;color:#777167}
+.slider-controls{display:flex;gap:8px}
+.slider-btn{width:42px;height:42px;border:1px solid #cfc4b1;background:transparent;color:var(--ink)}
+.slider-btn:hover{background:var(--ink);color:var(--cream)}
+
+/* RESERVATION */
+.reserve{background:linear-gradient(120deg,var(--green),#0c1d17);position:relative;overflow:hidden}
+.reserve:before{content:"";position:absolute;width:600px;height:600px;border:1px solid rgba(202,163,74,.12);border-radius:50%;right:-260px;top:-180px}
+.reserve-grid{display:grid;grid-template-columns:.75fr 1.25fr;gap:90px;align-items:center}
+.reserve-copy .copy{margin-top:24px}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.field{background:rgba(255,255,255,.045);border:1px solid var(--line);padding:15px 16px;color:var(--cream);outline:none;width:100%;border-radius:0}
+.field::placeholder{color:#777d76}
+select.field{color:#aaa}
+textarea.field{min-height:125px;resize:vertical;grid-column:1/-1}
+.form .btn{grid-column:1/-1}
+.field:focus{border-color:var(--gold);box-shadow:0 0 0 2px rgba(202,163,74,.08)}
+
+/* LOCATION */
+.location{background:#f4ead8;color:var(--ink)}
+.location .eyebrow{color:var(--red)}
+.location .eyebrow:before{background:var(--red)}
+.location-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px}
+.map{min-height:450px;background:
+linear-gradient(rgba(16,45,36,.82),rgba(16,45,36,.82)),
+url("https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=1300&q=80") center/cover;
+display:grid;place-items:center;border:10px solid #e8dcc8}
+.map-pin{width:70px;height:70px;border-radius:50%;background:var(--red);display:grid;place-items:center;color:#fff;font-size:1.5rem;box-shadow:0 0 0 14px rgba(185,34,42,.15)}
+.location-info{padding:15px 0}
+.address{font-family:var(--serif);font-size:2rem;line-height:1.15;margin:20px 0 30px}
+.hours{border-top:1px solid #d7cbb8}
+.hours-row{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid #d7cbb8;font-size:.74rem}
+
+/* FOOTER */
+.footer{background:#0a0b0a;padding:80px 0 30px}
+.footer-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr 1.2fr;gap:50px;padding-bottom:65px}
+.footer-logo{font-family:var(--display);font-size:1.4rem;letter-spacing:4px}
+.footer p{color:#85877f;font-size:.74rem;max-width:290px;margin-top:15px}
+.footer h4{font-size:.62rem;text-transform:uppercase;letter-spacing:2px;color:var(--gold);margin-bottom:18px}
+.footer-links{list-style:none;display:grid;gap:9px}
+.footer-links a{font-size:.74rem;color:#aaa9a2;transition:.2s}
+.footer-links a:hover{color:var(--cream)}
+.newsletter{display:flex;border-bottom:1px solid #555;padding-bottom:8px;margin-top:12px}
+.newsletter input{background:none;border:0;outline:0;color:var(--cream);width:100%;font-size:.72rem}
+.newsletter button{background:none;border:0;color:var(--gold);font-size:.6rem;letter-spacing:1px;font-weight:700}
+.footer-bottom{border-top:1px solid var(--line);padding-top:25px;display:flex;justify-content:space-between;color:#62645f;font-size:.6rem;text-transform:uppercase;letter-spacing:1px}
+
+/* CART */
+.cart-fab{position:fixed;right:25px;bottom:25px;z-index:900;background:var(--red);color:#fff;border:0;width:62px;height:62px;border-radius:50%;box-shadow:0 14px 40px rgba(0,0,0,.35);font-size:1.1rem}
+.cart-count{position:absolute;right:-2px;top:-2px;background:var(--gold);color:var(--ink);width:21px;height:21px;border-radius:50%;font-size:.58rem;display:grid;place-items:center;font-weight:800}
+.cart-panel{position:fixed;right:0;top:0;height:100%;width:min(420px,92vw);z-index:2000;background:#f5ecdc;color:var(--ink);transform:translateX(105%);transition:.45s;box-shadow:-20px 0 70px rgba(0,0,0,.3);display:flex;flex-direction:column}
+.cart-panel.open{transform:translateX(0)}
+.cart-head{display:flex;justify-content:space-between;align-items:center;padding:25px;border-bottom:1px solid #ddd0bc}
+.cart-head h3{font-family:var(--serif);font-size:1.7rem}
+.close{border:0;background:none;font-size:1.4rem;color:inherit}
+.cart-items{padding:20px 25px;overflow:auto;flex:1}
+.cart-row{display:grid;grid-template-columns:1fr auto;gap:15px;padding:16px 0;border-bottom:1px solid #ded2c0}
+.cart-row h4{font-family:var(--serif);font-weight:500}
+.cart-row small{color:#777;font-size:.65rem}
+.qty{display:flex;align-items:center;gap:8px;margin-top:7px}
+.qty button{width:24px;height:24px;border:1px solid #cfc2af;background:none}
+.cart-foot{padding:20px 25px;border-top:1px solid #ddd0bc}
+.total{display:flex;justify-content:space-between;font-family:var(--serif);font-size:1.35rem;margin-bottom:15px}
+.cart-empty{color:#777;font-size:.8rem;text-align:center;padding:50px 10px}
+
+/* MODAL + TOAST */
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:3000;display:none;align-items:center;justify-content:center;padding:40px}
+.modal.show{display:flex}
+.modal img{max-height:88vh;max-width:92vw;width:auto;box-shadow:0 25px 90px #000}
+.modal-close{position:absolute;right:25px;top:20px;background:none;border:0;color:#fff;font-size:2rem}
+.toast{position:fixed;left:50%;bottom:25px;transform:translate(-50%,120px);background:var(--cream);color:var(--ink);padding:13px 20px;font-size:.72rem;z-index:4000;box-shadow:0 12px 35px rgba(0,0,0,.25);transition:.4s}
+.toast.show{transform:translate(-50%,0)}
+.reveal{opacity:0;transform:translateY(25px);transition:.8s ease}
+.reveal.visible{opacity:1;transform:none}
+
+/* RESPONSIVE */
+@media(max-width:950px){
+  .nav-links{position:fixed;inset:0 0 0 auto;width:min(330px,85vw);background:var(--green);flex-direction:column;justify-content:center;transform:translateX(110%);transition:.4s}
+  .nav-links.open{transform:translateX(0)}
+  .nav-links a{font-size:.8rem}
+  .menu-toggle{display:block;z-index:2}
+  .nav-book{padding:0;border:0}
+  .intro-grid,.reserve-grid,.process-wrap,.location-grid{grid-template-columns:1fr;gap:45px}
+  .process-title{position:static}
+  .feature-grid{grid-template-columns:1fr 1fr}
+  .feature{border-bottom:1px solid var(--line)}
+  .pizza-grid{grid-template-columns:1fr 1fr}
+  .review{grid-template-columns:1fr;gap:25px}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:650px){
+  .section{padding:85px 0}
+  .hero h1{font-size:clamp(3.3rem,16vw,5rem);letter-spacing:-2px}
+  .hero-meta,.scroll-mark{display:none}
+  .hero-actions{flex-direction:column;max-width:250px}
+  .intro-image{height:430px}
+  .stamp{left:-15px;bottom:20px;width:90px;height:90px}
+  .feature-grid,.pizza-grid,.menu-list,.form,.footer-grid{grid-template-columns:1fr}
+  .feature{padding:25px 0!important;border-right:0}
+  .pizza-img{height:260px}
+  .section-head{display:block}
+  .section-head .copy{margin-top:18px}
+  .gallery-grid{grid-template-columns:1fr 1fr;grid-auto-rows:180px}
+  .gallery-item:nth-child(1){grid-row:span 2}
+  .gallery-item:nth-child(4){grid-column:span 2}
+  .review p{font-size:1.2rem}
+  .location-grid{gap:25px}
+  .map{min-height:300px}
+  .footer-bottom{flex-direction:column;gap:8px}
+}
+</style>
+</head>
+
+<body>
+<div class="noise"></div>
+
+<header class="nav" id="nav">
+  <div class="container nav-inner">
+    <a class="logo" href="#home">LA CROSTA<small>NAPOLI · ITALIA</small></a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Open menu">☰</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#pizza">Pizza</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a class="nav-book" href="#reserve">Book a Table</a></li>
+    </ul>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="container hero-content reveal">
+    <div class="hero-kicker">La Crosta · Napoli · Since 1987</div>
+    <h1>AUTHENTIC<br><span>ITALIAN PIZZA</span></h1>
+    <p class="hero-sub">Crafted by hand. Baked with fire. Made with passion.</p>
+    <p class="hero-copy">Experience the taste of Italy with handcrafted pizzas, fresh ingredients, rich sauces, and traditional recipes inspired by the heart of Naples.</p>
+    <div class="hero-actions">
+      <a href="#pizza" class="btn btn-red">Order Now <span>↗</span></a>
+      <a href="#menu" class="btn btn-line">Explore Menu</a>
+    </div>
+  </div>
+  <div class="scroll-mark">SCROLL TO DISCOVER</div>
+  <div class="hero-meta"><span>Wood Fired</span><i class="dot"></i><span>Slow Fermented</span><i class="dot"></i><span>Napoli</span></div>
+</section>
+
+<section class="section intro" id="about">
+  <div class="container intro-grid">
+    <div class="reveal">
+      <div class="eyebrow">The La Crosta Story</div>
+      <h2 class="title">THE <em>TASTE</em><br>OF ITALY</h2>
+      <p class="copy">La Crosta was created from a simple passion: bringing authentic Italian flavors to your table. Every pizza begins with carefully selected flour, fresh ingredients, slow-fermented dough, and traditional cooking techniques. Our kitchen combines classic Italian recipes with a modern dining experience.</p>
+      <div class="signature">Con amore,<small>La Crosta family</small></div>
+    </div>
+    <div class="intro-image reveal">
+      <img loading="lazy" src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=1200&q=85" alt="Fresh Neapolitan pizza">
+      <div class="stamp">100%<br>NAPOLI<br>STYLE</div>
+    </div>
+  </div>
+</section>
+
+<section class="section features">
+  <div class="container feature-grid reveal">
+    <article class="feature"><span class="feature-num">01</span><h3>Handmade Dough</h3><p>Slow fermentation for a light, flavorful crust.</p></article>
+    <article class="feature"><span class="feature-num">02</span><h3>Fresh Ingredients</h3><p>Selected produce, premium cheese and honest flavors.</p></article>
+    <article class="feature"><span class="feature-num">03</span><h3>Italian Recipes</h3><p>Classic recipes inspired by the heart of Naples.</p></article>
+    <article class="feature"><span class="feature-num">04</span><h3>Wood-Fired</h3><p>High heat, charred edges and a crisp, delicate base.</p></article>
+  </div>
+</section>
+
+<section class="section pizza-section" id="pizza">
+  <div class="container">
+    <div class="section-head reveal">
+      <div><div class="eyebrow">Our Signatures</div><h2 class="title">PIZZA,<br><em>THE NAPOLI WAY.</em></h2></div>
+      <p class="copy">Six house signatures. One philosophy: respect the ingredient, respect the fire.</p>
+    </div>
+    <div class="pizza-grid" id="pizzaGrid"></div>
+  </div>
+</section>
+
+<section class="section menu-section" id="menu">
+  <div class="container">
+    <div class="section-head reveal">
+      <div><div class="eyebrow">From Our Kitchen</div><h2 class="title">THE MENU</h2></div>
+      <p class="copy">A concise collection of Italian classics, made with the same care as our signature pizzas.</p>
+    </div>
+    <div class="menu-tabs" id="menuTabs"></div>
+    <div class="menu-list" id="menuList"></div>
+  </div>
+</section>
+
+<section class="section process">
+  <div class="container process-wrap">
+    <div class="process-title reveal">
+      <div class="eyebrow">The Craft</div>
+      <h2 class="title">FROM <em>FLOUR</em><br>TO FIRE.</h2>
+      <p class="copy" style="margin-top:25px">Nothing rushed. Nothing hidden. Just a few exceptional ingredients and the patience to treat them properly.</p>
+    </div>
+    <div class="process-list reveal">
+      <article class="step"><div class="step-no">01</div><div><h3>THE DOUGH</h3><p>Our dough is slowly fermented to create a light and flavorful crust.</p></div></article>
+      <article class="step"><div class="step-no">02</div><div><h3>THE SAUCE</h3><p>Fresh tomatoes are transformed into our signature Italian tomato sauce.</p></div></article>
+      <article class="step"><div class="step-no">03</div><div><h3>THE TOPPINGS</h3><p>Only carefully selected ingredients make it onto our pizzas.</p></div></article>
+      <article class="step"><div class="step-no">04</div><div><h3>THE FIRE</h3><p>Every pizza is baked at high temperature for a perfectly crisp crust.</p></div></article>
+    </div>
+  </div>
+</section>
+
+<section class="section gallery-section" id="gallery">
+  <div class="container">
+    <div class="section-head reveal">
+      <div><div class="eyebrow">Inside La Crosta</div><h2 class="title">A TASTE OF<br><em>THE ROOM.</em></h2></div>
+      <p class="copy">Pizza, pasta, fire and the people who make the table worth staying at.</p>
+    </div>
+    <div class="gallery-grid reveal" id="galleryGrid">
+      <div class="gallery-item"><img loading="lazy" src="https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=1000&q=82" alt="Neapolitan pizza"></div>
+      <div class="gallery-item"><img loading="lazy" src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=900&q=82" alt="Italian pasta"></div>
+      <div class="gallery-item"><img loading="lazy" src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=900&q=82" alt="Restaurant interior"></div>
+      <div class="gallery-item"><img loading="lazy" src="https://images.unsplash.com/photo-1579684947550-22e945225d9a?auto=format&fit=crop&w=1300&q=82" alt="Chef and pizza"></div>
+      <div class="gallery-item"><img loading="lazy" src="https://images.unsplash.com/photo-1593560708920-61dd98c8a03f?auto=format&fit=crop&w=900&q=82" alt="Wood fired pizza"></div>
+      <div class="gallery-item"><img loading="lazy" src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=82" alt="Fresh ingredients"></div>
+    </div>
+  </div>
+</section>
+
+<section class="section reviews" id="reviews">
+  <div class="container">
+    <div class="section-head reveal">
+      <div><div class="eyebrow">Guestbook</div><h2 class="title">WHAT OUR<br><em>GUESTS SAY.</em></h2></div>
+      <div class="slider-controls"><button class="slider-btn" id="prevReview">←</button><button class="slider-btn" id="nextReview">→</button></div>
+    </div>
+    <div class="review-shell reveal">
+      <div class="review-track" id="reviewTrack">
+        <article class="review"><div class="review-quote">“Bellissima.”</div><div><div class="stars">★★★★★</div><p>Absolutely incredible pizza. The crust was perfectly crispy and the ingredients tasted incredibly fresh.</p><cite>— Sofia M.</cite></div></article>
+        <article class="review"><div class="review-quote">“Una serata perfetta.”</div><div><div class="stars">★★★★★</div><p>Beautiful restaurant, amazing atmosphere, and some of the best Italian food I've ever had.</p><cite>— Daniel R.</cite></div></article>
+        <article class="review"><div class="review-quote">“Torno presto.”</div><div><div class="stars">★★★★★</div><p>The truffle mushroom pizza was insane. Definitely coming back.</p><cite>— Marco L.</cite></div></article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section reserve" id="reserve">
+  <div class="container reserve-grid">
+    <div class="reserve-copy reveal">
+      <div class="eyebrow">Your Table Awaits</div>
+      <h2 class="title">RESERVE<br><em>YOUR TABLE.</em></h2>
+      <p class="copy">Join us in the heart of Naples. For birthdays, date nights, family dinners or simply very good pizza.</p>
+    </div>
+    <form class="form reveal" id="reservationForm">
+      <input class="field" required placeholder="Full Name" aria-label="Full Name">
+      <input class="field" required type="email" placeholder="Email" aria-label="Email">
+      <input class="field" required type="tel" placeholder="Phone" aria-label="Phone">
+      <select class="field" required aria-label="Number of Guests"><option value="">Guests</option><option>1 Guest</option><option>2 Guests</option><option>3 Guests</option><option>4 Guests</option><option>5 Guests</option><option>6+ Guests</option></select>
+      <input class="field" required type="date" aria-label="Date">
+      <input class="field" required type="time" aria-label="Time">
+      <textarea class="field" placeholder="Special Request"></textarea>
+      <button class="btn btn-red" type="submit">Reserve Now ↗</button>
+    </form>
+  </div>
+</section>
+
+<section class="section location" id="contact">
+  <div class="container location-grid">
+    <div class="map reveal"><div class="map-pin">⌖</div></div>
+    <div class="location-info reveal">
+      <div class="eyebrow">Come Visit Us</div>
+      <h2 class="title">NAPLES,<br><em>ITALIA.</em></h2>
+      <div class="address">La Crosta Italian Restaurant<br>Via Roma 24<br>Naples, Italy</div>
+      <div class="hours">
+        <div class="hours-row"><span>Mon — Thu</span><strong>12 PM — 11 PM</strong></div>
+        <div class="hours-row"><span>Fri — Sat</span><strong>12 PM — 12 AM</strong></div>
+        <div class="hours-row"><span>Sunday</span><strong>12 PM — 10 PM</strong></div>
+      </div>
+      <div style="display:flex;gap:12px;margin-top:25px;flex-wrap:wrap">
+        <a class="btn btn-red" href="https://www.google.com/maps/search/?api=1&query=Via+Roma+24+Naples+Italy" target="_blank" rel="noopener">Get Directions ↗</a>
+        <a class="btn" style="border:1px solid #cfc3b1" href="tel:+390811234567">+39 081 123 4567</a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div><div class="footer-logo">LA CROSTA</div><p>Authentic Italian flavor, made with passion. A little piece of Naples, served at your table.</p></div>
+      <div><h4>Explore</h4><ul class="footer-links"><li><a href="#home">Home</a></li><li><a href="#about">About</a></li><li><a href="#menu">Menu</a></li><li><a href="#pizza">Pizza</a></li></ul></div>
+      <div><h4>Visit</h4><ul class="footer-links"><li><a href="#gallery">Gallery</a></li><li><a href="#reviews">Reviews</a></li><li><a href="#reserve">Reservations</a></li><li><a href="#contact">Contact</a></li></ul></div>
+      <div><h4>Stay in the loop</h4><p>Get delicious news from La Crosta.</p><form class="newsletter" id="newsletter"><input type="email" required placeholder="Your email"><button>SUBSCRIBE</button></form></div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 La Crosta. All Rights Reserved.</span><span>Napoli · Italia</span></div>
+  </div>
+</footer>
+
+<button class="cart-fab" id="cartFab" aria-label="Open shopping cart">🛒<span class="cart-count" id="cartCount">0</span></button>
+
+<aside class="cart-panel" id="cartPanel" aria-label="Shopping cart">
+  <div class="cart-head"><h3>Your Order</h3><button class="close" id="cartClose">×</button></div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-foot"><div class="total"><span>Total</span><span id="cartTotal">$0.00</span></div><button class="btn btn-red" style="width:100%" id="checkout">Checkout</button></div>
+</aside>
+
+<div class="modal" id="modal"><button class="modal-close" id="modalClose">×</button><img id="modalImg" alt=""></div>
+<div class="toast" id="toast"></div>
+
+<script>
+const pizzas=[
+{name:"Margherita",price:12,desc:"Fresh tomato sauce, mozzarella, basil & extra virgin olive oil.",img:"https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=900&q=82"},
+{name:"Pepperoni",price:15,desc:"Tomato sauce, mozzarella, premium pepperoni & oregano.",img:"https://images.unsplash.com/photo-1628840042765-356cda07504e?auto=format&fit=crop&w=900&q=82"},
+{name:"Quattro Formaggi",price:16,desc:"Mozzarella, parmesan, gorgonzola & fontina cheese.",img:"https://images.unsplash.com/photo-1571407970349-bc81e7e96d47?auto=format&fit=crop&w=900&q=82"},
+{name:"Diavola",price:17,desc:"Spicy salami, mozzarella, tomato sauce, chili & basil.",img:"https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=900&q=82"},
+{name:"Prosciutto & Arugula",price:18,desc:"Mozzarella, prosciutto, fresh arugula, parmesan & olive oil.",img:"https://images.unsplash.com/photo-1594007654729-407eedc4be65?auto=format&fit=crop&w=900&q=82"},
+{name:"Truffle Mushroom",price:19,desc:"Mushrooms, mozzarella, parmesan, truffle oil & fresh herbs.",img:"https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=900&q=82"}
+];
+
+const menuData={
+Pizza:[
+["Margherita","Tomato, mozzarella, basil, EVOO",12],
+["Diavola","Spicy salami, chili, mozzarella, basil",17],
+["Truffle Mushroom","Wild mushrooms, parmesan, truffle oil",19],
+["Prosciutto & Arugula","Prosciutto, arugula, parmesan, EVOO",18],
+["Quattro Formaggi","Mozzarella, parmesan, gorgonzola, fontina",16],
+["Pepperoni","Premium pepperoni, tomato, mozzarella, oregano",15]
+],
+Pasta:[
+["Tagliatelle al Ragù","Slow-cooked beef ragù, parmesan",17],
+["Cacio e Pepe","Pecorino Romano, black pepper",15],
+["Spaghetti Pomodoro","San Marzano tomato, basil, EVOO",14],
+["Penne Arrabbiata","Tomato, garlic, chili, parsley",14]
+],
+Appetizers:[
+["Burrata","Creamy burrata, tomatoes, basil oil",11],
+["Arancini","Crispy risotto balls, mozzarella, tomato",10],
+["Focaccia","Sea salt, rosemary, EVOO",8],
+["Polpette","Beef meatballs, tomato sauce, parmesan",12]
+],
+Salads:[
+["Insalata Caprese","Tomato, mozzarella, basil, EVOO",10],
+["Rucola e Parmigiano","Rocket, parmesan, lemon dressing",9],
+["Mediterranea","Greens, olives, tomato, cucumber, feta",11]
+],
+Desserts:[
+["Tiramisù","Espresso, mascarpone, cocoa",9],
+["Panna Cotta","Vanilla cream, seasonal berries",8],
+["Cannoli Siciliani","Sweet ricotta, pistachio, orange",8]
+],
+Drinks:[
+["San Pellegrino","Sparkling mineral water",4],
+["Italian Lemon Soda","Citrus, sparkling soda",5],
+["Espresso","Classic Italian espresso",3],
+["Limonata","Fresh lemon, mint, sparkling water",5]
+]
+};
+
+const pizzaGrid=document.getElementById("pizzaGrid");
+pizzas.forEach(p=>{
+ const card=document.createElement("article"); card.className="pizza-card reveal";
+ card.innerHTML=`<div class="pizza-img"><img loading="lazy" src="${p.img}" alt="${p.name} pizza"></div>
+ <div class="pizza-body"><div class="pizza-top"><h3 class="pizza-name">${p.name}</h3><span class="price">$${p.price}</span></div>
+ <p>${p.desc}</p><button class="add" data-name="${p.name}" data-price="${p.price}">Add to Order +</button></div>`;
+ pizzaGrid.appendChild(card);
+});
+
+const tabs=document.getElementById("menuTabs"), list=document.getElementById("menuList");
+const cats=["All",...Object.keys(menuData)];
+cats.forEach((cat,i)=>{const b=document.createElement("button");b.className="tab"+(i===0?" active":"");b.textContent=cat;b.onclick=()=>renderMenu(cat,b);tabs.appendChild(b)});
+function renderMenu(cat,button){
+ document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));button.classList.add("active");
+ const items=cat==="All"?Object.entries(menuData).flatMap(([c,arr])=>arr.map(x=>[...x,c])):menuData[cat].map(x=>[...x,cat]);
+ list.innerHTML="";
+ items.forEach(([name,desc,price,category])=>{
+  const el=document.createElement("article");el.className="menu-item";
+  el.innerHTML=`<div><h3>${name}</h3><p>${desc}</p></div><div class="menu-price">$${price}</div>`;
+  list.appendChild(el);
+ });
+}
+renderMenu("All",tabs.firstChild);
+
+let cart={};
+function addToCart(name,price){
+ cart[name]=cart[name]?{...cart[name],qty:cart[name].qty+1}:{name,price,qty:1};
+ updateCart(); toast(`${name} added to your order`);
+}
+document.addEventListener("click",e=>{
+ const b=e.target.closest(".add"); if(b)addToCart(b.dataset.name,Number(b.dataset.price));
+});
+function updateCart(){
+ const box=document.getElementById("cartItems"), count=Object.values(cart).reduce((a,x)=>a+x.qty,0);
+ document.getElementById("cartCount").textContent=count;
+ box.innerHTML="";
+ if(!count){box.innerHTML='<div class="cart-empty">Your order is empty.<br>Humanity has survived, somehow.</div>'}
+ Object.values(cart).forEach(x=>{
+  const row=document.createElement("div");row.className="cart-row";
+  row.innerHTML=`<div><h4>${x.name}</h4><small>$${x.price} each</small><div class="qty"><button onclick="changeQty('${x.name}',-1)">−</button><span>${x.qty}</span><button onclick="changeQty('${x.name}',1)">+</button></div></div><strong>$${(x.price*x.qty).toFixed(2)}</strong>`;
+  box.appendChild(row);
+ });
+ const total=Object.values(cart).reduce((a,x)=>a+x.price*x.qty,0);
+ document.getElementById("cartTotal").textContent=`$${total.toFixed(2)}`;
+}
+function changeQty(name,d){
+ cart[name].qty+=d;if(cart[name].qty<=0)delete cart[name];updateCart();
+}
+const panel=document.getElementById("cartPanel");
+document.getElementById("cartFab").onclick=()=>panel.classList.add("open");
+document.getElementById("cartClose").onclick=()=>panel.classList.remove("open");
+document.getElementById("checkout").onclick=()=>{if(!Object.keys(cart).length)return toast("Your cart is empty.");toast("Checkout demo ready. No payment is processed.");};
+updateCart();
+
+const nav=document.getElementById("nav");
+window.addEventListener("scroll",()=>nav.classList.toggle("scrolled",scrollY>40));
+document.getElementById("menuToggle").onclick=()=>document.getElementById("navLinks").classList.toggle("open");
+document.querySelectorAll(".nav-links a").forEach(a=>a.onclick=()=>document.getElementById("navLinks").classList.remove("open"));
+
+const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add("visible");observer.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll(".reveal").forEach(x=>observer.observe(x));
+
+let slide=0;const track=document.getElementById("reviewTrack");
+function moveReview(n){slide=(slide+n+3)%3;track.style.transform=`translateX(-${slide*100}%)`}
+document.getElementById("nextReview").onclick=()=>moveReview(1);
+document.getElementById("prevReview").onclick=()=>moveReview(-1);
+setInterval(()=>moveReview(1),6500);
+
+const modal=document.getElementById("modal"), modalImg=document.getElementById("modalImg");
+document.querySelectorAll(".gallery-item").forEach(item=>item.onclick=()=>{modalImg.src=item.querySelector("img").src;modalImg.alt=item.querySelector("img").alt;modal.classList.add("show");document.body.classList.add("no-scroll")});
+function closeModal(){modal.classList.remove("show");document.body.classList.remove("no-scroll")}
+document.getElementById("modalClose").onclick=closeModal;modal.onclick=e=>{if(e.target===modal)closeModal()};
+
+function toast(msg){const t=document.getElementById("toast");t.textContent=msg;t.classList.add("show");clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>t.classList.remove("show"),2400)}
+document.getElementById("reservationForm").onsubmit=e=>{e.preventDefault();toast("Your table has been reserved. We look forward to seeing you!");e.target.reset()};
+document.getElementById("newsletter").onsubmit=e=>{e.preventDefault();toast("You're on the list. Buon appetito.");e.target.reset()};
+</script>
+</body>
+</html>
